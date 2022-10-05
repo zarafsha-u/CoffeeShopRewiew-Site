@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+
+</head>
+<body>
+<div class="row">
+    <div class="col-6 p-0">
+        <div class="card img-fluid">
+            <img src="/static/images/bg.jpeg" class="card-img-bottom bg-img vh-100" alt="...">
+            <div class="card-img-overlay">
+                <h1 class="card-title text-white mx-4 mt-4">Coffee Shop Review</h1>
+                <a href="{{url_for('home')}}" class="mx-4 mt-2 btn btn-light" role="button">Home</a>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6 bg-warning bg-opacity-25" >
+        <div class="container-fluid vh-100 overflow-auto">
+            <div class="row">
+                {% for i in range(15) %}
+                    <p></p>
+                {% endfor %}
+                {% if already_added %}
+                <h3 class="text-center mt-4">Sorry this cafe is already in our list.</h3>
+                {% else: %}
+                <h3 class="text-center mt-4">Success! Cafe has been added to our list.</h3>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

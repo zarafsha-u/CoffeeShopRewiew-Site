@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% import "bootstrap/wtf.html" as wtf %}
+{% include 'header.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Add Cafe</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-6 p-0">
+        <div class="card img-fluid">
+            <img src="/static/images/bg.jpeg" class="card-img-bottom bg-img vh-100" alt="...">
+            <div class="card-img-overlay">
+                <h1 class="card-title text-white mx-4 mt-4">Add a Cafe to our Website!</h1>
+                <a href="{{url_for('home')}}" class="mx-4 btn btn-light" role="button">Home</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 bg-warning bg-opacity-25" >
+        <div class="container-fluid vh-100 overflow-auto">
+            <div class="mx-4 mt-4 row">
+                <form class="form form-horizontal" method="POST" action='/add-cafe' role="form">
+                  {{ form.hidden_tag() }}
+                  {{ wtf.form_errors(form, hiddens="only") }}
+                    <p>{{ wtf.form_field(form.name, placeholder='Ex: Coffee Republic') }}</p>
+                    <p>{{ wtf.form_field(form.location, placeholder='Ex: Bethesda, MD') }}</p>
+                    <p>{{ wtf.form_field(form.wifi) }}</p>
+                    <p>{{ wtf.form_field(form.coffee_price, placeholder='Ex: $7-$11') }}</p>
+                    <p>{{ wtf.form_field(form.environment) }}</p>
+                    <p>{{ wtf.form_field(form.overall_rating, placeholder='Ex: 9') }}</p>
+                    <p>{{ wtf.form_field(form.submit, button_map={'submit':'light'} )}}</p>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

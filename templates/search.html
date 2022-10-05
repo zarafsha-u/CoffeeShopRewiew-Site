@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>Search Cafe</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-6 p-0">
+        <div class="card img-fluid">
+            <img src="/static/images/bg.jpeg" class="card-img-bottom bg-img vh-100" alt="...">
+            <div class="card-img-overlay">
+                <h1 class="card-title text-white mx-4 mt-4">Search Coffee Shop</h1>
+                <h6 class="card-title text-white mx-4">Please enter the location(city or state) or name of cafe in box below. To search by state, enter 2 letter abbreviation. To search by city or cafe, enter full name.</h6>
+                <form action="/search" role='form' method="POST" class='form-horizontal'>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <input name='input' class="mt-2 mx-4 form-control" placeholder="Ex: MD">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <input type="submit" class="mt-2 mx-4 btn btn-light" name="Search" value="Search">
+                            <a href="{{url_for('home')}}" class="mt-2 btn btn-light" role="button">Home</a>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 bg-warning bg-opacity-25">
+        <div class="container-fluid vh-100 overflow-auto">
+            <div class="row">
+                {% if length_1 %}
+                <h3 class="mt-4">Results</h3>
+                {% for cafe in state %}
+                <div class="col-lg-6 col-sm-12 p-0">
+                    <hr class="text-white">
+                    <h4 class="px-2 pt-2 mx-auto" style="color:sienna">{{cafe.name}}</h4>
+                    <li class="px-3">Location : {{cafe.location}}</li>
+                    <li class="px-3">Wifi connection : {{cafe.wifi}}</li>
+                    <li class="px-3">Coffee price range : {{cafe.coffee_price}}</li>
+                    <li class="px-3">{{cafe.environment}}</li>
+                    <li class="px-3 pb-2">Overall Rating : <span class="fw-bold">{{cafe.overall_rating}}</span></li>
+                </div>
+                {% endfor %}
+                {% elif length_2 %}
+                <h3 class="mt-3">Results</h3>
+                {% for cafe in other %}
+                <div class="col-lg-6 col-sm-12 p-0">
+                    <hr class="text-white">
+                    <h4 class="px-2 pt-3 mx-auto" style="color:sienna">{{cafe.name}}</h4>
+                    <li class="px-3">Location : {{cafe.location}}</li>
+                    <li class="px-3">Wifi connection : {{cafe.wifi}}</li>
+                    <li class="px-3">Coffee price range : {{cafe.coffee_price}}</li>
+                    <li class="px-3">{{cafe.environment}}</li>
+                    <li class="px-3 pb-2">Overall Rating : <span class="fw-bold">{{cafe.overall_rating}}</span></li>
+                </div>
+                {% endfor %}
+                {% elif length_1 == False or length_2 == False %}
+                <h3 class="mt-4">Sorry, no cafes found here or by this name. </h3>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
