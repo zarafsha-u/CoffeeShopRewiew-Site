@@ -21,7 +21,7 @@ class Cafe(db.Model):
     environment= db.Column(db.String(10), nullable=False)
     overall_rating = db.Column(db.Integer, nullable=False)
 
-# db.create_all()
+db.create_all()
 
 
 @app.route("/")
